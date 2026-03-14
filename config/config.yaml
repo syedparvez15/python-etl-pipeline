@@ -1,0 +1,48 @@
+# config.yaml
+# -----------
+# ETL Pipeline Configuration
+# Update these values to match your environment before running.
+
+source:
+  source_type: csv                          # Options: sql | csv | api
+  file_path: data/sample_input.csv
+  delimiter: ","
+
+  # SQL source example (uncomment to use):
+  # source_type: sql
+  # connection_string: "postgresql://user:password@localhost:5432/mydb"
+  # query: "SELECT * FROM orders WHERE created_at >= CURRENT_DATE - INTERVAL '7 days'"
+
+  # API source example (uncomment to use):
+  # source_type: api
+  # url: "https://api.example.com/v1/records"
+  # headers:
+  #   Authorization: "Bearer YOUR_TOKEN_HERE"
+
+transform:
+  required_columns:
+    - id
+    - name
+    - created_at
+  date_columns:
+    - created_at
+    - updated_at
+  numeric_columns:
+    - amount
+    - quantity
+
+target:
+  target_type: csv                          # Options: sql | csv | azure_blob
+  output_path: data/output/transformed.csv
+
+  # SQL target example (uncomment to use):
+  # target_type: sql
+  # connection_string: "postgresql://user:password@localhost:5432/mydb"
+  # table_name: transformed_orders
+  # if_exists: append                       # Options: append | replace | fail
+
+  # Azure Blob target example (uncomment to use):
+  # target_type: azure_blob
+  # connection_string: "DefaultEndpointsProtocol=https;AccountName=..."
+  # container_name: etl-output
+  # blob_name: output/transformed.csv

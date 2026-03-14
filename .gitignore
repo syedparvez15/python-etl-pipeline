@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+.venv/
+venv/
+env/
+
+# Logs
+logs/
+*.log
+
+# Data files (keep sample, ignore real data)
+data/output/
+data/*.csv
+!data/sample_input.csv
+
+# Config with secrets
+config/config.local.yaml
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
